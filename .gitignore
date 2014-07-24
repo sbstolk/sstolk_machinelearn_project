@@ -1,0 +1,2 @@
+git remote add origin https://github.com/sbstolk/sstolk_machinelearn_project.git
+git push -u origin master
