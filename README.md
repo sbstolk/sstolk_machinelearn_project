@@ -30,5 +30,12 @@ testRemove <-grepl("^X|timestamp|window", names(TestData))
 TestData <- TestData[, !testRemove]
 TestClean <- TestData[, sapply(TestData, is.numeric)]
 ```
+Next, the training data was partitioned into a training set and a validation set so that the efficacy of the model could be evaluated prior to being run on the official test set.
+
+```r
+inTrain <- createDataPartition(TrainClean$classe, p=0.70, list=F)
+TrainOne <- TrainClean[inTrain, ]
+ValidateOne <- TrainClean[-inTrain, ]
+```
 
 #Model Building
