@@ -44,6 +44,17 @@ The RandomForest algorithm was used to build the predictive model. To validate t
 ```r
 controlRf <- trainControl(method="cv", 5)
 modelRf <- train(classe ~ ., data=TrainOne, method="rf", trControl=controlRf, ntree=250)
+predictRf <- predict(modelRf, ValidateOne)
+confusionMatrix(ValidateOne$classe, predictRf)
+accuracy <- postResample(predictRf, ValidateOne$classe)
+oose <- 1 - as.numeric(confusionMatrix(ValidateOne$classe, predictRf)$overall[1])
+oose
 ```
+This matrix indicates an overall model accuracy of 99.4%. The out-of-sample error is calulcated to be 0.59%. This model is then applied to the test data set. 
+
+```r
+result <- predict(modelRf, TestClean[, -length(names(TestClean))])
+```
+
 
 
