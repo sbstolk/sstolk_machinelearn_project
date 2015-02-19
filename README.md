@@ -39,3 +39,11 @@ ValidateOne <- TrainClean[-inTrain, ]
 ```
 
 #Model Building
+The RandomForest algorithm was used to build the predictive model. To validate this model, and calculate the out-of-sample error, k-folds cross validation (five folds). 
+
+```r
+controlRf <- trainControl(method="cv", 5)
+modelRf <- train(classe ~ ., data=TrainOne, method="rf", trControl=controlRf, ntree=250)
+```
+
+
